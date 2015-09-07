@@ -1,0 +1,6 @@
+/eeprom.bin
+*.idea
+.idea/**
+/bin/**
+amur.xml
+

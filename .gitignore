@@ -1,6 +1,6 @@
 /eeprom.bin
 *.idea
-.idea/**
+/.idea/**
 /bin/**
 amur.xml
-
+/.idea/dictionaries

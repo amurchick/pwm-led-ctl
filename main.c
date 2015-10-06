@@ -62,6 +62,7 @@ ISR (TIMER0_OVF_vect) {
 	for (uint8_t i = 0; i < BUTTONS; i++) {
 
 
+//		if (PINB & buttons[i].port == 0) {
 		if (get_pad_charge_time(buttons[i].port) > 10) {
 
 			if (buttons[i].count > 4) {
@@ -121,11 +122,18 @@ int main(void)
 	if (pwm_prev > MAX_PWM)
 		pwm_prev = 0;
 
+//	pwm_prev = MAX_PWM;
+
 	memset(&buttons, 0, sizeof(buttons));
 	buttons[0].port = _BV(PINB1);
 	buttons[1].port = _BV(PINB2);
 
+	PORTB |= _BV(PINB1) | _BV(PINB2);
+
     DDRB = _BV(LED_PIN) | _BV(LAMP_PIN);
+
+//	PORTB = _BV(LED_PIN) | _BV(LAMP_PIN);
+//	while (1) {}
 
 	// Set Timer0 1MHz / 64 / 256 ~ 60 times per second
 	TCCR0B = _BV(CS01) | _BV(CS00);
@@ -154,5 +162,4 @@ int main(void)
 		}
     }
 }
-
 #pragma clang diagnostic pop
